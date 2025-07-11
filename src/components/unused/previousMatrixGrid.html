@@ -1,0 +1,121 @@
+            <div className="relative">
+              {/* Matrix Grid */}
+              <div className="grid grid-cols-4 border-2 border-gray-400">
+                {/* Row 1 - Almost Certain */}
+                <div className="bg-green-300 p-8 border border-gray-300 text-center relative">
+                  <div className="text-sm font-semibold">Social Media</div>
+                  <div className="text-sm">Third Party engagement</div>
+                  <div className="absolute bottom-2 right-2 text-lg font-bold">2</div>
+                </div>
+                <div className="bg-yellow-400 p-8 border border-gray-300 text-center relative">
+                  <div className="text-sm font-semibold">Vendor and Contractor Management</div>
+                  <div className="absolute bottom-2 right-2 text-lg font-bold">1</div>
+                </div>
+                <div className="bg-red-400 p-8 border border-gray-300 text-center relative">
+                  <div className="text-sm font-semibold">Interactions with Institutional Customers (including GPOs)</div>
+                  <div className="text-sm">Sales Presentations</div>
+                  <div className="absolute bottom-2 right-2 text-lg font-bold">2</div>
+                </div>
+                {/*<div className="bg-red-500 p-8 border border-gray-300 text-center relative">
+                  <div className="text-sm font-semibold">Corporate Giving</div>
+                  <div className="text-sm">Exhibits & Displays & Congress booths</div>
+                  <div className="absolute bottom-2 right-2 text-lg font-bold">2</div>
+                </div>*/}
+                <div className="bg-red-500 p-8 border border-gray-300 text-center relative">
+                  <div className="text-sm font-semibold">Spreaker Programs</div>
+                  <div className="text-sm">Exhibits & Displays & Congress booths</div>
+                  <div className="absolute bottom-2 right-2 text-lg font-bold">2</div>
+                </div>
+
+                {/* Row 2 - Likely */}
+                <div className="bg-yellow-400 p-8 border border-gray-300 text-center relative">
+                  <div className="text-sm">Consultant Arrangements (including Advisory boards)</div>
+                  <div className="text-sm">Field Medical activities</div>
+                  <div className="text-sm">Use of AI</div>
+                  <div className="absolute bottom-2 right-2 text-lg font-bold">3</div>
+                </div>
+                <div className="bg-yellow-400 p-8 border border-gray-300 text-center relative">
+                  <div className="text-sm">Clinical Trials</div>
+                  <div className="text-sm">Interactions with Payers</div>
+                  <div className="absolute bottom-2 right-2 text-lg font-bold">2</div>
+                </div>
+                <div className="bg-yellow-400 p-8 border border-gray-300 text-center relative">
+                  <div className="text-sm">Educational Items and Reprints</div>
+                  <div className="absolute bottom-2 right-2 text-lg font-bold">1</div>
+                </div>
+                <div className="bg-red-400 p-8 border border-gray-300 text-center relative">
+                  <div className="text-sm">Specialty Pharmacy Arrangements</div>
+                  <div className="absolute bottom-2 right-2 text-lg font-bold">1</div>
+                </div>
+
+                {/* Row 3 - Possible */}
+                <div className="bg-green-300 p-8 border border-gray-300 text-center relative">
+                  <div className="text-sm">Political Payments or Contributions</div>
+                  <div className="absolute bottom-2 right-2 text-lg font-bold">1</div>
+                </div>
+                <div className="bg-blue-300 p-8 border border-gray-300 text-center relative">
+                  <div className="text-sm">Medical Information Requests</div>
+                  <div className="absolute bottom-2 right-2 text-lg font-bold">1</div>
+                </div>
+                <div className="bg-yellow-400 p-8 border border-gray-300 text-center relative">
+                  <div className="absolute bottom-2 right-2 text-lg font-bold">1</div>
+                </div>
+                <div className="bg-yellow-400 p-8 border border-gray-300 text-center relative">
+                  <div className="absolute bottom-2 right-2 text-lg font-bold">1</div>
+                </div>
+
+                {/* Row 4 - Unlikely */}
+                <div className="bg-green-300 p-8 border border-gray-300 text-center relative">
+                  <div className="text-sm">Speaker Meetings</div>
+                  <div className="absolute bottom-2 right-2 text-lg font-bold">1</div>
+                </div>
+                <div className="bg-blue-300 p-8 border border-gray-300 text-center relative">
+                  <div className="absolute bottom-2 right-2 text-lg font-bold">1</div>
+                </div>
+                <div className="bg-yellow-400 p-8 border border-gray-300 text-center relative">
+                  <div className="absolute bottom-2 right-2 text-lg font-bold">1</div>
+                </div>
+                <div className="bg-yellow-400 p-8 border border-gray-300 text-center relative">
+                  <div className="absolute bottom-2 right-2 text-lg font-bold">1</div>
+                </div>
+              </div>
+
+              {/* Axis Labels */}
+              <div className="absolute -bottom-8 left-0 right-0 grid grid-cols-4 text-center text-sm font-semibold">
+                <div>1 - Low</div>
+                <div>2 - Moderate</div>
+                <div>3 - Major</div>
+                <div>4 - Critical</div>
+              </div>
+              <div className="absolute mt-4 -bottom-12 left-1/2 transform -translate-x-1/2 text-sm font-semibold">
+                Qualitative Score
+              </div>
+
+              {/* Vertical axis label */}
+              <div className="absolute -left-16 top-1/2 transform -translate-y-1/2 -rotate-90 text-sm font-semibold whitespace-nowrap">
+                Quantitative Score
+              </div>
+              <div className="absolute -left-8 top-0 text-xs">4 - Almost Certain</div>
+              <div className="absolute -left-8 top-1/4 text-xs">3 - Likely</div>
+              <div className="absolute -left-8 top-2/4 text-xs">2 - Possible</div>
+              <div className="absolute -left-8 top-3/4 text-xs">1 - Unlikely</div>
+            </div>
+
+            <div className="flex items-center space-x-4 text-sm mt-16">
+              <div className="flex items-center space-x-2">
+                <div className="w-4 h-4 bg-red-500"></div>
+                <span>Very High</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-4 h-4 bg-yellow-400"></div>
+                <span>High</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-4 h-4 bg-green-300"></div>
+                <span>Moderate</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-4 h-4 bg-green-600"></div>
+                <span>Low</span>
+              </div>
+            </div>

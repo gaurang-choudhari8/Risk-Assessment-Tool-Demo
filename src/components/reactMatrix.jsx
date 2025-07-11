@@ -16,7 +16,7 @@ const MatrixGrid = () => {
 
   return (
     <div className="p-8 bg-gray-50 min-h-screen">
-      <h1 className="text-2xl font-bold mb-6 text-center">Matrix Grid</h1>
+      {/*<h1 className="text-2xl font-bold mb-6 text-center">Matrix Grid</h1>*/}
       
       <div className="w-full">
         {/* Matrix Container */}
@@ -55,42 +55,42 @@ const MatrixGrid = () => {
                                 break;
                             case 9:
                                 bgColor = 'bg-yellow-400';
-                                textColor = 'text-blue-800';
+                                textColor = 'text-black';
                                 break;
                             case 8:
                                 bgColor = 'bg-yellow-400';
-                                textColor = 'text-blue-800';
+                                textColor = 'text-black';
                                 break;
                             case 6:
                                 bgColor = 'bg-yellow-400';
-                                textColor = 'text-blue-800';
+                                textColor = 'text-black';
                                 break;
                             case 4:
                                 bgColor = 'bg-yellow-400';
-                                textColor = 'text-blue-800';
+                                textColor = 'text-black';
                                 break;
                             case 3:
                                 bgColor = 'bg-green-400';
-                                textColor = 'text-blue-800';
+                                textColor = 'text-black';
                                 break;
                             case 2:
                                 bgColor = 'bg-green-400';
-                                textColor = 'text-blue-800';
+                                textColor = 'text-black';
                                 break;
                             case 1:
                                 bgColor = 'bg-green-800';
                                 textColor = 'text-white';
                                 break;
                         }
-
+                        {/* Earlier text color for the yellow and the green cells: text-blue-800 */}
                         return (
                       <div
                         key={`${rowIndex}-${colIndex}`}
-                        className={`flex-1 h-24 border-2 border-black flex items-center justify-center ${bgColor} hover:bg-blue-100 transition-colors cursor-pointer mr-1 last:mr-0`}
+                        className={`flex-1 min-h-[4rem] border border-gray flex items-center justify-center ${bgColor} hover:bg-blue-100 transition-colors cursor-pointer mr-1 last:mr-0 py-4`}
                       >
                         {/* This is where you can put any HTML element */}
-                        <div className="text-center">
-                          <div className={`font-medium text-md ${textColor} `}>{(4 - rowIndex)*(colIndex+1)}</div>
+                        <div className="text-center px-2">
+                          <div className={`font-medium text-md ${textColor} `}>{bucketRiskScore}</div>
                           {cell.map((activity) => (<div className={`text-sm ${textColor} `}>{activity}</div>))}
                         </div>
                       </div>
@@ -116,6 +116,27 @@ const MatrixGrid = () => {
               </div>
             </div>
           </div>
+        
+                    {/* Adding Legends to the Matrix */}
+            <div className="flex items-center space-x-4 text-sm mt-16">
+              <div className="flex items-center space-x-2">
+                <div className="w-4 h-4 bg-red-500"></div>
+                <span>Very High</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-4 h-4 bg-yellow-400"></div>
+                <span>High</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-4 h-4 bg-green-300"></div>
+                <span>Moderate</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-4 h-4 bg-green-600"></div>
+                <span>Low</span>
+              </div>
+            </div>
+
         </div>
         
       </div>
