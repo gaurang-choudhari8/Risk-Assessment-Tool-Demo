@@ -118,37 +118,6 @@ const MatrixGrid = () => {
           </div>
         </div>
         
-        {/* Usage Example */}
-        <div className="mt-8 p-4 bg-white rounded-lg shadow">
-          <h3 className="text-lg font-semibold mb-3">Usage Example:</h3>
-          <p className="text-gray-700 mb-2">
-            Each cell can contain any HTML elements. Here are some examples:
-          </p>
-          <div className="grid grid-cols-2 gap-4 mt-4">
-            <div className="p-3 border rounded bg-gray-50">
-              <strong>Button Example:</strong>
-              <button className="mt-2 px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
-                Click Me
-              </button>
-            </div>
-            <div className="p-3 border rounded bg-gray-50">
-              <strong>Icon Example:</strong>
-              <div className="mt-2 text-2xl">🎯</div>
-            </div>
-            <div className="p-3 border rounded bg-gray-50">
-              <strong>Input Example:</strong>
-              <input 
-                type="text" 
-                className="mt-2 px-2 py-1 border rounded w-full" 
-                placeholder="Enter text"
-              />
-            </div>
-            <div className="p-3 border rounded bg-gray-50">
-              <strong>Image Example:</strong>
-              <div className="mt-2 w-8 h-8 bg-gradient-to-br from-purple-400 to-pink-400 rounded"></div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );
