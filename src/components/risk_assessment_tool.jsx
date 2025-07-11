@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp, Info, RefreshCw, Plus } from 'lucide-react';
+import MatrixGrid from './reactMatrix'
 
 const RiskAssessmentTool = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -505,13 +506,13 @@ const RiskAssessmentTool = () => {
                 <div>3 - Major</div>
                 <div>4 - Critical</div>
               </div>
-              <div className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 text-sm font-semibold">
-                Impact Rating
+              <div className="absolute mt-4 -bottom-12 left-1/2 transform -translate-x-1/2 text-sm font-semibold">
+                Qualitative Score
               </div>
 
               {/* Vertical axis label */}
               <div className="absolute -left-16 top-1/2 transform -translate-y-1/2 -rotate-90 text-sm font-semibold whitespace-nowrap">
-                Likelihood Rating
+                Quantitative Score
               </div>
               <div className="absolute -left-8 top-0 text-xs">4 - Almost Certain</div>
               <div className="absolute -left-8 top-1/4 text-xs">3 - Likely</div>
@@ -537,6 +538,8 @@ const RiskAssessmentTool = () => {
                 <span>Low</span>
               </div>
             </div>
+
+            <MatrixGrid/>
           </div>
         );
 
