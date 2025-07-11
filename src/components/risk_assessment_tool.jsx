@@ -4,26 +4,28 @@ import { ChevronDown, ChevronUp, Info, RefreshCw, Plus } from 'lucide-react';
 const RiskAssessmentTool = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedActivity, setSelectedActivity] = useState('HCP Sponsorships to Scientific Congresses');
-  const [selectedLocalizedActivity, setSelectedLocalizedActivity] = useState('India Healthcare Compliance Risk 4');
+  const [selectedLocalizedActivity, setSelectedLocalizedActivity] = useState('US Healthcare Compliance Risk 4');
   const [selectedActionActivity, setSelectedActionActivity] = useState('Clinical Trials');
   const [selectedMitigationActivity, setSelectedMitigationActivity] = useState('Corporate Giving');
   const [calibrationCompleted, setCalibrationCompleted] = useState(true);
   const [showAnnotation, setShowAnnotation] = useState(false);
 
+  {/* { id: 2, label: 'Localized Risk Assessment' }, */}
+  {/* { id: 5, label: 'Calibration Discussion' }, */}
+  {/* { id: 6, label: 'Action Plan' }, */}
+
   const steps = [
     { id: 1, label: 'Risk Assessment', active: true },
-    { id: 2, label: 'Localized Risk Assessment' },
-    { id: 3, label: 'Risk Activity Summary' },
-    { id: 4, label: 'Risk Matrix' },
-    { id: 5, label: 'Calibration Discussion' },
-    { id: 6, label: 'Action Plan' },
-    { id: 7, label: 'Mitigation Plan' },
-    { id: 8, label: 'Mitigation Summary' }
+    { id: 2, label: 'Risk Activity Summary' },
+    { id: 3, label: 'Risk Matrix' },
+    { id: 4, label: 'Mitigation Plan' },
+    { id: 5, label: 'Mitigation Summary' }
   ];
 
   const riskActivities = [
+    { name: 'Speaker Programs', impact: '4 - Very High', likelihood: '3 - Likely', selected: true },
     { name: 'Field Medical activities', impact: '2 - Moderate', likelihood: '3 - Likely' },
-    { name: 'HCP Sponsorships to Scientific Congresses', impact: '-', likelihood: '-', selected: true },
+    { name: 'HCP Sponsorships to Scientific Congresses', impact: '-', likelihood: '-' },
     { name: 'Interactions with government officials (non-HCPs)', impact: '-', likelihood: '-' },
     { name: 'Investigator Sponsored Research', impact: '-', likelihood: '-' },
     { name: 'Market Research', impact: '-', likelihood: '-' },
@@ -48,13 +50,12 @@ const RiskAssessmentTool = () => {
   ];
 
   const summaryData = [
-    { activity: 'Test 7', riskArea: 'Healthcare Compliance', impact: 4, likelihood: 4, score: 12 },
+    { activity: 'Speaker Programs', riskArea: 'Compliance', impact: 4, likelihood: 4, score: 12 },
     { activity: 'Field (Sales) Calls', riskArea: 'Healthcare Compliance', impact: 4, likelihood: 4, score: 12 },
-    { activity: 'Interactions with Payers', riskArea: 'Healthcare Compliance', impact: 4, likelihood: 4, score: 12 },
-    { activity: 'Patient Advocacy Groups', riskArea: 'Healthcare Compliance', impact: 4, likelihood: 4, score: 12 },
-    { activity: 'Sales Presentations', riskArea: 'Healthcare Compliance', impact: 4, likelihood: 4, score: 12 },
-    { activity: 'Test Activity', riskArea: 'Compliance', impact: 4, likelihood: 3, score: 11 },
-    { activity: 'Patient Support Programs', riskArea: 'Healthcare Compliance', impact: 3, likelihood: 4, score: 10 }
+    { activity: 'Interactions with Payers', riskArea: 'Healthcare Compliance', impact: 3, likelihood: 4, score: 10 },
+    { activity: 'Patient Advocacy Groups', riskArea: 'Healthcare Compliance', impact: 3, likelihood: 3, score: 9 },
+    { activity: 'Sales Presentations', riskArea: 'Healthcare Compliance', impact: 3, likelihood: 2, score: 8 },
+    { activity: 'Patient Support Programs', riskArea: 'Healthcare Compliance', impact: 2, likelihood: 3, score: 7 }
   ];
 
   const actionPlanData = [
@@ -69,7 +70,8 @@ const RiskAssessmentTool = () => {
   ];
 
   const mitigationData = [
-    { activity: 'Corporate Giving', score: 12, mitigations: 1, selected: true },
+    { activity: 'Speaker Programs', score: 12, mitigations: 1, selected: true },
+    { activity: 'Corporate Giving', score: 12, mitigations: 1 },
     { activity: 'Exhibits & Displays & Congress booths', score: 1, mitigations: 1 },
     { activity: 'Interactions with Institutional Customers (including GPOs)', score: 1, mitigations: 0 },
     { activity: 'Sales Presentations', score: 10, mitigations: 1 },
@@ -79,22 +81,9 @@ const RiskAssessmentTool = () => {
 
   const mitigationSummary = [
     {
-      activity: 'Clinical Trials',
-      score: 9,
+      activity: 'Speaker Programs',
+      score: 12,
       title: 'Mitigation 1',
-      rootCause: 'Ineffective control design',
-      mitigationType: 'Monitoring - Analytics',
-      therapeuticArea: 'Hematology',
-      functionalArea: 'Marketing',
-      createdBy: 'MARIANO ANDERSSON',
-      assignedTo: 'Assignee',
-      startOn: '4/24/2025',
-      dueBy: '4/30/2025'
-    },
-    {
-      activity: 'Clinical Trials',
-      score: 9,
-      title: 'Mitigation 2',
       rootCause: 'Ineffective control design',
       mitigationType: 'Monitoring - Analytics',
       therapeuticArea: 'Hematology',
@@ -116,6 +105,19 @@ const RiskAssessmentTool = () => {
       assignedTo: 'Erika Ramirez',
       startOn: '5/13/2025',
       dueBy: '5/30/2025'
+    },
+    {
+      activity: 'Clinical Trials',
+      score: 9,
+      title: 'Mitigation 2',
+      rootCause: 'Ineffective control design',
+      mitigationType: 'Monitoring - Analytics',
+      therapeuticArea: 'Hematology',
+      functionalArea: 'Marketing',
+      createdBy: 'MARIANO ANDERSSON',
+      assignedTo: 'Assignee',
+      startOn: '4/24/2025',
+      dueBy: '4/30/2025'
     },
     {
       activity: 'Exhibits & Displays & Congress booths',
@@ -158,7 +160,7 @@ const RiskAssessmentTool = () => {
         return (
           <div className="space-y-4">
             <h2 className="text-xl font-semibold text-gray-800 bg-gray-600 text-white p-3">
-              Select Activity for Risk Assessment for India
+              Select Activity for Risk Assessment for US
             </h2>
             <div className="grid grid-cols-4 gap-4">
               <div className="col-span-3">
@@ -252,11 +254,11 @@ const RiskAssessmentTool = () => {
           </div>
         );
 
-      case 2:
+      case 6:
         return (
           <div className="space-y-4">
             <h2 className="text-xl font-semibold text-gray-800 bg-gray-600 text-white p-3">
-              Select Localized Healthcare Compliance Risk Activity for India
+              Select Healthcare Compliance Risk Activity for US
             </h2>
             <div className="grid grid-cols-4 gap-4">
               <div className="col-span-3">
@@ -335,11 +337,11 @@ const RiskAssessmentTool = () => {
           </div>
         );
 
-      case 3:
+      case 2:
         return (
           <div className="space-y-4">
             <h2 className="text-xl font-semibold text-gray-800 bg-gray-600 text-white p-3">
-              Summary of Risk Activities for Africa
+              Summary of Risk Activities for US
             </h2>
             <div className="space-y-2 text-sm">
               <p>• You have successfully completed the Risk Assessment.</p>
@@ -403,11 +405,11 @@ const RiskAssessmentTool = () => {
           </div>
         );
 
-      case 4:
+      case 3:
         return (
           <div className="space-y-4">
             <h2 className="text-xl font-semibold text-gray-800 bg-gray-600 text-white p-3">
-              4X4 Matrix of Risk Activities for India
+              4X4 Matrix of Risk Activities for US
             </h2>
             <div className="space-y-2 text-sm">
               <p>• You have successfully completed the Risk Assessment.</p>
@@ -432,8 +434,13 @@ const RiskAssessmentTool = () => {
                   <div className="text-sm">Sales Presentations</div>
                   <div className="absolute bottom-2 right-2 text-lg font-bold">2</div>
                 </div>
-                <div className="bg-red-500 p-8 border border-gray-300 text-center relative">
+                {/*<div className="bg-red-500 p-8 border border-gray-300 text-center relative">
                   <div className="text-sm font-semibold">Corporate Giving</div>
+                  <div className="text-sm">Exhibits & Displays & Congress booths</div>
+                  <div className="absolute bottom-2 right-2 text-lg font-bold">2</div>
+                </div>*/}
+                <div className="bg-red-500 p-8 border border-gray-300 text-center relative">
+                  <div className="text-sm font-semibold">Spreaker Programs</div>
                   <div className="text-sm">Exhibits & Displays & Congress booths</div>
                   <div className="absolute bottom-2 right-2 text-lg font-bold">2</div>
                 </div>
@@ -533,7 +540,7 @@ const RiskAssessmentTool = () => {
           </div>
         );
 
-      case 5:
+      case 7:
         return (
           <div className="space-y-4">
             <h2 className="text-xl font-semibold text-gray-800 bg-gray-600 text-white p-3">
@@ -604,7 +611,7 @@ const RiskAssessmentTool = () => {
           </div>
         );
 
-      case 6:
+      case 8:
         return (
           <div className="space-y-4">
             <h2 className="text-xl font-semibold text-gray-800 bg-gray-600 text-white p-3">
@@ -687,34 +694,43 @@ const RiskAssessmentTool = () => {
           </div>
         );
 
-      case 7:
+      case 4:
         return (
           <div className="space-y-4">
             <h2 className="text-xl font-semibold text-gray-800 bg-gray-600 text-white p-3">
-              Select Risk Activity for Mitigation Plan for India
+              Select Risk Activity for Mitigation Plan for US
             </h2>
 
             <div className="grid grid-cols-4 gap-4">
               <div className="col-span-3">
-                <div className="bg-blue-600 text-white p-2 grid grid-cols-3 text-sm font-semibold">
+                <div className="bg-blue-600 text-white p-2 grid grid-cols-4 text-sm font-semibold">
                   <div>Activity</div>
                   <div>Risk Score</div>
+                  <div>Monitoring</div>
                   <div># Mitigation</div>
                 </div>
                 {mitigationData.map((item, index) => (
                   <div 
                     key={index}
-                    className={`grid grid-cols-3 p-2 border-b cursor-pointer hover:bg-gray-50 ${
+                    className={`grid grid-cols-4 p-2 border-b cursor-pointer hover:bg-gray-50 ${
                       item.selected ? 'bg-blue-200' : ''
                     }`}
                     onClick={() => setSelectedMitigationActivity(item.activity)}
                   >
+                    {/* Activity Name */}
                     <div className="text-sm">{item.activity}</div>
+                    {/* Risk Score Bar */}
                     <div className="text-sm">
                       <span className={`text-white px-2 py-1 rounded text-center block ${getScoreColor(item.score)}`}>
                         {item.score}
                       </span>
                     </div>
+                    {/* Mitigation */}
+                    <div className="text-sm text-center">
+                          <button className="px-3 py-1 bg-blue-500 text-white rounded mr-2">Yes</button>
+                          <button className="px-3 py-1 bg-gray-300 text-black rounded">No</button>
+                    </div>
+                    {/* Mitigation */}
                     <div className="text-sm text-center">
                       <span className="flex items-center justify-center">
                         <Plus className="h-4 w-4 mr-1" />
@@ -783,11 +799,11 @@ const RiskAssessmentTool = () => {
           </div>
         );
 
-      case 8:
+      case 5:
         return (
           <div className="space-y-4">
             <h2 className="text-xl font-semibold text-gray-800 bg-gray-600 text-white p-3">
-              Summary of Mitigation for Activities of India
+              Summary of Mitigation for Activities of US
             </h2>
             
             <div className="space-y-2 text-sm">
