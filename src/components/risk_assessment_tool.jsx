@@ -23,19 +23,37 @@ const RiskAssessmentTool = () => {
     { id: 5, label: 'Mitigation Summary' }
   ];
 
-  const riskActivities = [
-    { name: 'Speaker Programs', impact: '4 - Very High', likelihood: '3 - Likely', selected: true },
-    { name: 'Field Medical activities', impact: '2 - Moderate', likelihood: '3 - Likely' },
+    const riskActivities = [
+    { name: 'Speaker Programs', impact: '4 - Very High', likelihood: '4 - Very Likely', selected: true },
+    { name: 'Congress Booths', impact: '4 - Very High', likelihood: '3 - Likely' },
+    { name: 'Specialty Pharmacy Arrangements', impact: '4 - Very High', likelihood: '2 - Moderately Likely' },
+    { name: 'Interactions with Institutional Customers (including GPOs)', impact: '3 - High', likelihood: '3 - Likely' },
+    { name: 'Sales Presentations', impact: '3 - High', likelihood: '3 - Likely' },
+    { name: 'Educational Items and Reprints', impact: '3 - High', likelihood: '2 - Moderately Likely' },
+    { name: 'Patient Support Programs', impact: '3 - High', likelihood: '1 - Less Likely' },
+    { name: 'Vendor and Contractor Management', impact: '2 - Moderate', likelihood: '2 - Moderately Likely' },
+    { name: 'Clinical Trials', impact: '2 - Moderate', likelihood: '2 - Moderately Likely' },
+    { name: 'Interactions with Payers', impact: '2 - Moderate', likelihood: '1 - Less Likely' },
+    { name: 'Medical Information Requests', impact: '1 - Low', likelihood: '2 - Moderately Likely' },
+    { name: 'Social Media', impact: '1 - Low', likelihood: '1 - Less Likely' },
+    { name: 'Third Party Engagement', impact: '1 - Low', likelihood: '1 - Less Likely' },
+    { name: 'Consultant Arrangements (Including Advisory Boards)', impact: '1 - Low', likelihood: '1 - Less Likely' },
+    { name: 'Field Medical Activities', impact: '1 - Low', likelihood: '-' },
+    { name: 'Use of AI', impact: '1 - Low', likelihood: '-' },
+    { name: 'Political Payments or Contributions', impact: '1 - Low', likelihood: '-' },
+    { name: 'Patient Advocacy Groups', impact: '-', likelihood: '1- Less Likely'}
+  ];
+
+    {/* 
     { name: 'HCP Sponsorships to Scientific Congresses', impact: '-', likelihood: '-' },
     { name: 'Interactions with government officials (non-HCPs)', impact: '-', likelihood: '-' },
     { name: 'Investigator Sponsored Research', impact: '-', likelihood: '-' },
     { name: 'Market Research', impact: '-', likelihood: '-' },
     { name: 'Patient Advocacy Groups', impact: '-', likelihood: '-' },
-    { name: 'Patient Support Programs', impact: '-', likelihood: '-' },
     { name: 'Privacy: Collection & Use of PI', impact: '-', likelihood: '-' },
     { name: 'Privacy: Training & Education on Use', impact: '-', likelihood: '-' },
     { name: 'Privacy: Unintentional Receipt of PI by Field Sales', impact: '-', likelihood: '-' }
-  ];
+      */}
 
   const localizedRiskActivities = [
     { name: 'Vendor and Contractor Management', impact: '2 - Moderate', likelihood: '4 - Almost Certain' },
@@ -50,6 +68,7 @@ const RiskAssessmentTool = () => {
     { name: 'India Healthcare Compliance Risk 10', impact: '-', likelihood: '-' }
   ];
 
+  {/* 
   const summaryData = [
     { activity: 'Speaker Programs', riskArea: 'Compliance', impact: 4, likelihood: 4, score: 12 },
     { activity: 'Field (Sales) Calls', riskArea: 'Healthcare Compliance', impact: 4, likelihood: 4, score: 12 },
@@ -57,6 +76,28 @@ const RiskAssessmentTool = () => {
     { activity: 'Patient Advocacy Groups', riskArea: 'Healthcare Compliance', impact: 3, likelihood: 3, score: 9 },
     { activity: 'Sales Presentations', riskArea: 'Healthcare Compliance', impact: 3, likelihood: 2, score: 8 },
     { activity: 'Patient Support Programs', riskArea: 'Healthcare Compliance', impact: 2, likelihood: 3, score: 7 }
+  ];
+  */}
+
+  const summaryData = [
+    { activity: 'Speaker Programs', riskArea: 'Compliance', impact: '4 - Very High', likelihood: '4 - Very Likely', score: 12, selected: true },
+    { activity: 'Congress Booths', impact: '4 - Very High', riskArea: 'Compliance', likelihood: '3 - Likely', score: 11 },
+    { activity: 'Specialty Pharmacy Arrangements', impact: '4 - Very High', riskArea: 'Compliance', likelihood: '2 - Moderately Likely', score: 10},
+    { activity: 'Interactions with Institutional Customers (including GPOs)', impact: '3 - High', riskArea: 'Compliance', likelihood: '3 - Likely', score: 9},
+    { activity: 'Sales Presentations', impact: '3 - High', riskArea: 'Compliance', likelihood: '3 - Likely', score: 9},
+    { activity: 'Educational Items and Reprints', impact: '3 - High', riskArea: 'Compliance', likelihood: '2 - Moderately Likely', score: 8},
+    { activity: 'Patient Support Programs', impact: '3 - High', riskArea: 'Compliance', likelihood: '1 - Less Likely', score: 7},
+    { activity: 'Vendor and Contractor Management', impact: '2 - Moderate', riskArea: 'Compliance', likelihood: '2 - Moderately Likely', score: 6},
+    { activity: 'Clinical Trials', impact: '2 - Moderate', riskArea: 'Compliance', likelihood: '2 - Moderately Likely', score: 6},
+    { activity: 'Interactions with Payers', impact: '2 - Moderate', riskArea: 'Compliance', likelihood: '1 - Less Likely', score: 5},
+    { activity: 'Medical Information Requests', impact: '1 - Low', riskArea: 'Compliance', likelihood: '2 - Moderately Likely', score: 4},
+    { activity: 'Social Media', impact: '1 - Low', riskArea: 'Compliance', likelihood: '1 - Less Likely', score: 3},
+    { activity: 'Third Party Engagement', impact: '1 - Low', riskArea: 'Compliance', likelihood: '1 - Less Likely', score: 3},
+    { activity: 'Consultant Arrangements (Including Advisory Boards)', impact: '1 - Low', riskArea: 'Compliance', likelihood: '1 - Less Likely', score: 3},
+    { activity: 'Field Medical Activities', impact: '1 - Low', riskArea: 'Compliance', likelihood: '-', score: 2 },
+    { activity: 'Use of AI', impact: '1 - Low', riskArea: 'Compliance', likelihood: '-', score: 2 },
+    { activity: 'Political Payments or Contributions', impact: '1 - Low', riskArea: 'Compliance', likelihood: '-', score: 1 },
+    { activity: 'Patient Advocacy Groups', impact: '-', riskArea: 'Compliance', likelihood: '1- Less Likely', score: 1}
   ];
 
   const actionPlanData = [

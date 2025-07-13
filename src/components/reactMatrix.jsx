@@ -4,9 +4,9 @@ const MatrixGrid = () => {
   // Sample data for demonstration - you can replace this with your own content
   const sampleContent = [
     [['Social Media','Third Party Engagement'], ['Vendor and Contractor Management'], ['Interactions with Institutional Customers (including GPOs)','Sales Presentations'], ['Speaker Programs','Congress Booths']],
-    [['Consultant Arrangements','Field Medical Activities','Use of AI'], ['Clinical Trials','Interactions with Payers'], ['Educational Items and Reprints'], ['Specialty Pharmacy Arrangements']],
-    [['Political Payments or Contributions'], ['Medical Information Requests'], ['C3','Z4'], ['C4','Z5']],
-    [['D1','Z3'], ['D2','Z2'], ['D3','Z4'], ['D4','Z5']]
+    [['Consultant Arrangements (Including Advisory Boards)','Field Medical Activities','Use of AI'], ['Clinical Trials','Interactions with Payers'], ['Educational Items and Reprints'], ['Specialty Pharmacy Arrangements']],
+    [['Political Payments or Contributions'], ['Medical Information Requests'], [''], ['']],
+    [['Patient Advocacy Groups'], [''], ['Patient Support Programs'], ['']]
   ];
 
   const xAxisLabels = ['1 - Low', '2 - Moderate', '3 - Major', '4 - Critical'];
