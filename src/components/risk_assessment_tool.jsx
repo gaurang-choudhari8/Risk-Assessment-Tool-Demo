@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp, Info, RefreshCw, Plus } from 'lucide-react';
-import MatrixGrid from './reactMatrix'
+import MatrixGrid from './reactMatrix3';
+import MitigationSummaryPage from './trial_mitigationSummary';
+import logo from '../images/Zaidyn_logo_riskAssesment.png'
 
 const RiskAssessmentTool = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -24,7 +26,7 @@ const RiskAssessmentTool = () => {
   ];
 
     const riskActivities = [
-    { name: 'Speaker Programs', impact: '4 - Very High', likelihood: '4 - Very Likely', selected: true },
+    { name: 'Speaker Programs', impact: '4 - Very High', likelihood: '4 - Very Likely' },
     { name: 'Congress Booths', impact: '4 - Very High', likelihood: '3 - Likely' },
     { name: 'Specialty Pharmacy Arrangements', impact: '4 - Very High', likelihood: '2 - Moderately Likely' },
     { name: 'Interactions with Institutional Customers (including GPOs)', impact: '3 - High', likelihood: '3 - Likely' },
@@ -111,6 +113,7 @@ const RiskAssessmentTool = () => {
     { activity: 'Field Medical activities', status: 'Not Submitted', score: 1 }
   ];
 
+  {/*
   const mitigationData = [
     { activity: 'Speaker Programs', score: 12, mitigations: 1, selected: true },
     { activity: 'Corporate Giving', score: 12, mitigations: 1 },
@@ -120,6 +123,24 @@ const RiskAssessmentTool = () => {
     { activity: 'Clinical Trials', score: 9, mitigations: 2 },
     { activity: 'Specialty Pharmacy Arrangements', score: 1, mitigations: 0 }
   ];
+  */}
+
+  const mitigationData = [
+    {activity: 'Speaker Programs', score: 16, monitoring: true, mitigations: 1 },
+    {activity: 'Congress Booths', score: 16, monitoring: false, mitigations: 1 },
+    {activity: 'Specialty Pharmacy Arrangements', score: 12, monitoring: true, mitigations: 1 },
+    {activity: 'Interactions with Institutional Customers (including GPOs)', score: 12, monitoring: false, mitigations: 1 },
+    {activity: 'Sales Presentations', score: 12, monitoring: false, mitigations: 1 },
+    {activity: 'Educational Items and Reprints', score: 9, monitoring: false, mitigations: 1 },
+    {activity: 'Vendor and Contractor Management', score: 8, monitoring: true, mitigations: 1 },
+    {activity: 'Clinical Trials', score: 6, monitoring: true, mitigations: 1 },
+    {activity: 'Interactions with Payers', score: 6, monitoring: false, mitigations: 1 },
+    {activity: 'Patient Support Programs', score: 3, monitoring: true, mitigations: 1 }
+  ]
+
+
+
+
 
   const mitigationSummary = [
     {
@@ -196,17 +217,25 @@ const RiskAssessmentTool = () => {
     return 'bg-green-400';
   };
 
+  const getConsolidatedScoreColor = (score) => {
+    if (score >= 12) return 'bg-red-600';
+    if (score >= 4) return 'bg-yellow-400';
+    if (score >= 2) return 'bg-green-400';
+    return 'bg-green-800';
+  }
+
   const renderStepContent = () => {
     switch (currentStep) {
       case 1:
         return (
           <div className="space-y-4">
-            <h2 className="text-xl font-semibold text-gray-800 bg-gray-600 text-white p-3">
+            <h2 className="text-center text-lg font-semibold text-gray-800 bg-gray-900 text-white p-2">
               Select Activity for Risk Assessment for US
             </h2>
+            <div className="px-6 py-2">
             <div className="grid grid-cols-4 gap-4">
-              <div className="col-span-3">
-                <div className="bg-blue-600 text-white p-2 grid grid-cols-4 text-sm font-semibold">
+              <div className="bg-white col-span-3 shadow-[2px_2px_0_rgba(0,0,0,0.2)] p-2">
+                <div className="bg-white text-center text-black border-b-2 border-gray-300 p-2 grid grid-cols-4 text-sm font-bold">
                   <div>Activity</div>
                   <div>Impact Rating</div>
                   <div>Likelihood Rating</div>
@@ -216,21 +245,21 @@ const RiskAssessmentTool = () => {
                   <div 
                     key={index}
                     className={`grid grid-cols-4 p-2 border-b cursor-pointer hover:bg-gray-50 ${
-                      activity.selected ? 'bg-blue-200' : ''
+                      activity.selected ? 'bg-gray-200' : ''
                     }`}
                     onClick={() => setSelectedActivity(activity.name)}
                   >
                     <div className="text-sm">{activity.name}</div>
-                    <div className="text-sm">{activity.impact}</div>
-                    <div className="text-sm">{activity.likelihood}</div>
-                    <div className="text-sm">
+                    <div className="text-sm text-center">{activity.impact}</div>
+                    <div className="text-sm text-center">{activity.likelihood}</div>
+                    <div className="flex items-center justify-center text-sm">
                       <Info className="h-4 w-4 text-blue-500" />
                     </div>
                   </div>
                 ))}
               </div>
-              <div className="bg-gray-100 p-4">
-                <h3 className="font-semibold text-blue-600 mb-2">
+              <div className="bg-white p-4 shadow-[2px_2px_0_rgba(0,0,0,0.2)] p-2">
+                <h3 className="font-bold text-teal-600 mb-2">
                   Selected Activity: {selectedActivity}
                 </h3>
                 <p className="text-sm text-gray-600 mb-4">
@@ -256,20 +285,20 @@ const RiskAssessmentTool = () => {
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Impact Rating *</label>
+                    <label className="block text-sm font-medium text-teal-600 mb-2">Impact Rating *</label>
                     <select className="w-full p-2 border border-gray-300 rounded">
                       <option>Select...</option>
                     </select>
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Likelihood Rating *</label>
+                    <label className="block text-sm font-medium text-teal-600 mb-2">Likelihood Rating *</label>
                     <select className="w-full p-2 border border-gray-300 rounded">
                       <option>Select...</option>
                     </select>
                   </div>
                   
-                  <button className="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700">
+                  <button className="bg-teal-600 text-white px-4 py-2 rounded hover:bg-gray-700">
                     Submit
                   </button>
                 </div>
@@ -292,6 +321,7 @@ const RiskAssessmentTool = () => {
                   </div>
                 </div>
               </div>
+            </div>
             </div>
           </div>
         );
@@ -382,34 +412,40 @@ const RiskAssessmentTool = () => {
       case 2:
         return (
           <div className="space-y-4">
-            <h2 className="text-xl font-semibold text-gray-800 bg-gray-600 text-white p-3">
+            <h2 className="text-center text-lg font-semibold bg-gray-900 text-white p-2">
               Summary of Risk Activities for US
             </h2>
+            <div className="px-6 py-2">
             <div className="space-y-2 text-sm">
-              <p>• You have successfully completed the Risk Assessment.</p>
-              <p>• Here's a summary of all assessments submitted. Ensure that the rating are in line with your expectations.</p>
-              <p>• <strong>Note:</strong> Risk Activities marked as "Not Applicable for your country" will not appear in this summary.</p>
-            </div>
-            
-            <div className="flex justify-between items-center">
-              <div></div>
-              <div className="text-right">
-                <span className="text-lg font-semibold">Risks Submitted: 30</span>
+              <div class="w-full bg-white text-gray-600 px-4 py-2 shadow-[2px_2px_0_rgba(0,0,0,0.2)]">
+                <p> You have successfully completed the Risk Assessment.</p>
+              </div>
+              <div class="w-full bg-white text-gray-600 px-4 py-2 shadow-[2px_2px_0_rgba(0,0,0,0.2)]">
+                <p> Here's a summary of all assessments submitted. Ensure that the rating are in line with your expectations.</p>
+              </div>
+              <div class="w-full bg-white text-gray-600 px-4 py-2 shadow-[2px_2px_0_rgba(0,0,0,0.2)]">
+                <p> <strong>Note : </strong> Risk Activities marked as "Not Applicable for your country" will not appear in this summary.</p>
               </div>
             </div>
+            
 
-            <div className="bg-gray-100 p-2 grid grid-cols-5 text-sm font-semibold">
-              <div>Activity</div>
-              <div>Risk Area</div>
-              <div>Impact Rating</div>
-              <div>Likelihood Rating</div>
-              <div>Risk Score</div>
+              <div className="flex justify-center items-center p-4">
+                <span className="text-md font-semibold">Risks Submitted: 18</span>
+              </div>
+
+            <div className="bg-white p-2 shadow-[2px_2px_0_rgba(0,0,0,0.2)]">
+            <div className="bg-white p-2 grid grid-cols-5 text-sm font-semibold border-b-2 border-gray-300">
+              <div className="">Activity</div>
+              <div className="text-sm text-center">Risk Area</div>
+              <div className="text-sm text-center">Impact Rating</div>
+              <div className="text-sm text-center">Likelihood Rating</div>
+              <div className="text-sm text-center">Risk Score</div>
             </div>
             
             {summaryData.map((item, index) => (
               <div key={index} className="grid grid-cols-5 p-2 border-b">
                 <div className="text-sm">{item.activity}</div>
-                <div className="text-sm">{item.riskArea}</div>
+                <div className="text-sm text-center">{item.riskArea}</div>
                 <div className="text-sm text-center">{item.impact}</div>
                 <div className="text-sm text-center">{item.likelihood}</div>
                 <div className="text-sm">
@@ -420,7 +456,11 @@ const RiskAssessmentTool = () => {
               </div>
             ))}
 
-            <div className="flex items-center space-x-4 text-sm mt-4">
+
+            
+
+            
+            <div className="flex items-center space-x-4 text-sm mt-16 mx-4">
               <div className="flex items-center space-x-2">
                 <div className="w-4 h-4 bg-red-500"></div>
                 <span>Very High</span>
@@ -439,23 +479,33 @@ const RiskAssessmentTool = () => {
               </div>
             </div>
             
-            <p className="text-sm text-gray-600 mt-4">
+            
+            <p className="text-sm text-gray-600 mt-6 mb-2 mx-4">
               <strong>Note:</strong> If you don't see the latest data, click the Refresh button (
               <RefreshCw className="inline h-4 w-4" />
               ) at the top of the page to load the most recent information.
             </p>
+
+            </div>
+          </div>
           </div>
         );
 
       case 3:
         return (
           <div className="space-y-4">
-            <h2 className="text-xl font-semibold text-gray-800 bg-gray-600 text-white p-3">
+            <h2 className="text-center text-lg font-semibold bg-gray-900 text-white p-2">
               4X4 Matrix of Risk Activities for US
             </h2>
+            <div className="px-6 py-2">
             <div className="space-y-2 text-sm">
-              <p>• You have successfully completed the Risk Assessment.</p>
-              <p>• Here's a 4x4 Matrix of all Risk Activities submitted.</p>
+              <div class="w-full bg-white text-gray-600 px-4 py-2 shadow-[2px_2px_0_rgba(0,0,0,0.2)]">
+                <p> You have successfully completed the Risk Assessment.</p>
+              </div>
+              <div class="w-full bg-white text-gray-600 px-4 py-2 shadow-[2px_2px_0_rgba(0,0,0,0.2)]">
+                <p> Here's a 4x4 Matrix of all Risk Activities submitted.</p>
+              </div>
+              </div>
             </div>
 
             <MatrixGrid/>
@@ -619,19 +669,25 @@ const RiskAssessmentTool = () => {
       case 4:
         return (
           <div className="space-y-4">
-            <h2 className="text-xl font-semibold text-gray-800 bg-gray-600 text-white p-3">
+            <h2 className="text-center text-lg font-semibold bg-gray-900 text-white p-2">
               Select Risk Activity for Mitigation Plan for US
             </h2>
-
+            <div className="px-6 py-2">
             <div className="grid grid-cols-4 gap-4">
-              <div className="col-span-3">
-                <div className="bg-blue-600 text-center text-white p-2 grid grid-cols-4 text-sm font-semibold">
+              <div className="bg-white col-span-3 p-2 shadow-[2px_2px_0_rgba(0,0,0,0.2)]">
+                <div className="bg-white text-center text-black border-b-2 border-gray-300 p-2 grid grid-cols-4 text-sm font-semibold">
                   <div>Activity</div>
                   <div>Risk Score</div>
                   <div>Monitoring</div>
                   <div># Mitigation</div>
                 </div>
-                {mitigationData.map((item, index) => (
+                {mitigationData.map((item, index) => {
+                
+                const monitoringState = item.monitoring;
+                const yesButtonStyle = monitoringState?"bg-teal-600 text-white":"bg-gray-300 text-black";
+                const noButtonStyle = monitoringState?"bg-gray-300 text-black":"bg-teal-600 text-white";
+                
+                return (
                   <div 
                     key={index}
                     className={`grid grid-cols-4 p-2 border-b cursor-pointer hover:bg-gray-50 ${
@@ -643,14 +699,14 @@ const RiskAssessmentTool = () => {
                     <div className="text-sm">{item.activity}</div>
                     {/* Risk Score Bar */}
                     <div className="text-sm">
-                      <span className={`text-white px-2 py-1 rounded text-center block ${getScoreColor(item.score)}`}>
+                      <span className={`text-white px-2 py-1 rounded text-center block ${getConsolidatedScoreColor(item.score)}`}>
                         {item.score}
                       </span>
                     </div>
                     {/* Mitigation */}
                     <div className="text-sm text-center">
-                          <button className="px-3 py-1 bg-blue-500 text-white rounded mr-2">Yes</button>
-                          <button className="px-3 py-1 bg-gray-300 text-black rounded">No</button>
+                          <button className={`px-3 py-1 ${yesButtonStyle} rounded mr-2 active:bg-blue-800 active:scale-95 transform transition`}>Yes</button>
+                          <button className={`px-3 py-1 ${noButtonStyle} rounded active:bg-gray-600 active:scale-95 active:text-white transform transition`}>No</button>
                     </div>
                     {/* Mitigation */}
                     <div className="text-sm text-center">
@@ -660,11 +716,11 @@ const RiskAssessmentTool = () => {
                       </span>
                     </div>
                   </div>
-                ))}
+                )})}
               </div>
               
-              <div className="bg-gray-100 p-4">
-                <h3 className="font-semibold text-blue-600 mb-2">
+              <div className="bg-white p-4 shadow-[2px_2px_0_rgba(0,0,0,0.2)]">
+                <h3 className="font-bold text-teal-600 mb-2">
                   Selected Activity: {selectedMitigationActivity}
                 </h3>
                 <p className="text-sm text-gray-600 mb-4">
@@ -673,39 +729,39 @@ const RiskAssessmentTool = () => {
                 
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Title *</label>
+                    <label className="block text-sm font-medium text-teal-600 mb-2">Title *</label>
                     <input type="text" className="w-full p-2 border border-gray-300 rounded" />
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Root Cause (Please refer the link below the form for root cause description) *</label>
+                    <label className="block text-sm font-medium text-teal-600 mb-2">Root Cause (Please refer the link below the form for root cause description) *</label>
                     <select className="w-full p-2 border border-gray-300 rounded">
                       <option>Select...</option>
                     </select>
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-teal-600 mb-2">
                       Please provide a detailed description of the root cause. The description should focus on the "why" to describe the underlying cause of the risk *
                     </label>
                     <textarea className="w-full p-2 border border-gray-300 rounded h-20"></textarea>
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Therapeutic Area</label>
+                    <label className="block text-sm font-medium text-teal-600 mb-2">Therapeutic Area</label>
                     <select className="w-full p-2 border border-gray-300 rounded">
                       <option>Select...</option>
                     </select>
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Functional Area *</label>
+                    <label className="block text-sm font-medium text-teal-600 mb-2">Functional Area *</label>
                     <select className="w-full p-2 border border-gray-300 rounded">
                       <option>Select...</option>
                     </select>
                   </div>
                   
-                  <button className="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700">
+                  <button className="bg-teal-600 text-white px-4 py-2 rounded hover:bg-gray-700">
                     Submit
                   </button>
                 </div>
@@ -718,28 +774,31 @@ const RiskAssessmentTool = () => {
                 </div>
               </div>
             </div>
+            </div>
           </div>
         );
 
       case 5:
         return (
           <div className="space-y-4">
-            <h2 className="text-xl font-semibold text-gray-800 bg-gray-600 text-white p-3">
+            <h2 className="text-center text-lg font-semibold bg-gray-900 text-white p-2">
               Summary of Mitigation for Activities of US
             </h2>
-            
+            <div className="px-6 py-2">
             <div className="space-y-2 text-sm">
-              <p>• You have successfully filled in the mitigations for the activities.</p>
-              <p>• Here's a summary of all mitigations submitted.</p>
-            </div>
-            
-            <div className="flex justify-between items-center">
-              <div></div>
-              <div className="text-right">
-                <span className="text-lg font-semibold">Mitigations Submitted: 5</span>
+              <div class="w-full bg-white shadow-[2px_2px_0_rgba(0,0,0,0.2)] text-gray-600 px-4 py-2">
+                <p> You have successfully filled in the mitigations for the activities.</p>
+              </div>
+              <div class="w-full bg-white shadow-[2px_2px_0_rgba(0,0,0,0.2)] text-gray-600 px-4 py-2">
+                <p> Here's a summary of all mitigations submitted.</p>
               </div>
             </div>
+            
+              <div className="flex justify-center items-center p-4">
+                <span className="text-md font-semibold">Mitigations Submitted: 10</span>
+              </div>
 
+            {/*
             <div className="overflow-x-auto">
               <div className="bg-gray-100 p-2 grid grid-cols-12 text-xs font-semibold min-w-max">
                 <div>Activity</div>
@@ -777,12 +836,15 @@ const RiskAssessmentTool = () => {
                 </div>
               ))}
             </div>
+            */}
+            <MitigationSummaryPage />
             
             <p className="text-sm text-gray-600 mt-4">
               <strong>Note:</strong> If you don't see the latest data, click the Refresh button (
               <RefreshCw className="inline h-4 w-4" />
               ) at the top of the page to load the most recent information.
             </p>
+            </div>
           </div>
         );
 
@@ -794,16 +856,20 @@ const RiskAssessmentTool = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-white border-b border-gray-200 p-4">
+      <div className="bg-white border-b-2 border-gray-200 py-2">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <div className="text-blue-600 text-xl font-bold">⚡ Risk Insights Engine</div>
+            <div className="bg-orange-500 text-white text-l font-bold px-16 py-3">RISK INSIGHTS ENGINE</div>
           </div>
-          <div className="text-blue-600 text-xl font-bold">Risk Assessment Tool</div>
+            <img src={logo} alt="Company Logo" className="h-10 w-auto" />
+          <div className="bg-orange-500 text-white text-l font-bold px-16 py-3">RISK ASSESSMENT TOOL</div>
         </div>
       </div>
 
+
+
       {/* Navigation Steps */}
+      {/*}
       <div className="bg-white border-b border-gray-200 p-4">
         <div className="flex items-center justify-between max-w-6xl mx-auto">
           <div className="flex items-center space-x-2">
@@ -818,7 +884,7 @@ const RiskAssessmentTool = () => {
                   onClick={() => setCurrentStep(step.id)}
                   className={`flex items-center justify-center w-8 h-8 rounded-full text-sm font-semibold ${
                     currentStep === step.id
-                      ? 'bg-blue-600 text-white'
+                      ? 'bg-teal-500 text-white'
                       : currentStep > step.id
                       ? 'bg-gray-400 text-white'
                       : 'bg-gray-200 text-gray-600'
@@ -837,9 +903,71 @@ const RiskAssessmentTool = () => {
           </div>
         </div>
       </div>
+      /*}
+
+      {/* New Navigation Bar starts */}
+      {/*}
+      <div className="bg-white border-b border-gray-200 p-4">
+  <     div className="flex items-center justify-between max-w-6xl mx-auto">
+          <div className="flex items-center space-x-2">
+            <div className="p-2 text-gray-600">🏠</div>
+            <span className="text-base text-gray-600">Home</span>
+          </div>
+    
+          <div className="flex items-center space-x-6">
+            {steps.map((step, index) => (
+              <div key={step.id} className="flex items-center">
+                <button
+                  onClick={() => setCurrentStep(step.id)}
+                  className={`text-sm font-semibold px-3 py-2 rounded-md transition-colors duration-200 ${
+                    currentStep === step.id
+                      ? 'bg-teal-500 text-white'
+                      : currentStep > step.id
+                      ? 'bg-gray-400 text-white'
+                      : 'text-gray-600 hover:text-gray-800 hover:bg-gray-100'
+                  }`}
+                >
+                  {step.label}
+                </button>
+                {index < steps.length - 1 && (
+                  <div className="w-8 h-px bg-gray-300 mx-3"></div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      
+      */}
+      {/* Third Navigation Bar Starts */}
+      <div className="bg-white border-b border-gray-200 px-4">
+  <div className="flex items-center justify-start max-w-6xl">
+    {/*<div className="flex items-center space-x-2">
+      <div className="p-2 text-gray-600">🏠</div>
+      <span className="text-base text-gray-600">Home</span>
+    </div>*/}
+    
+    <div className="flex items-center space-x-6">
+      {steps.map((step, index) => (
+        <div key={step.id}>
+          <button
+            onClick={() => setCurrentStep(step.id)}
+            className={`text-md font-semibold px-3 py-4 bg-white border-b-2 transition-colors duration-200 ${
+              currentStep === step.id
+                ? 'text-teal-600 border-teal-600'
+                : 'text-gray-600 border-transparent hover:text-gray-800'
+            }`}
+          >
+            {step.label}
+          </button>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
 
       {/* Main Content */}
-      <div className="p-6">
+      <div className="py-4 bg-gray-100">
         {renderStepContent()}
       </div>
     </div>

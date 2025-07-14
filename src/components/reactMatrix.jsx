@@ -15,17 +15,17 @@ const MatrixGrid = () => {
   const yAxisHeading = 'Quantitative Score';
 
   return (
-    <div className="p-8 bg-gray-50 min-h-screen">
+    <div className="px-6 bg-gray-100 min-h-screen">
       {/*<h1 className="text-2xl font-bold mb-6 text-center">Matrix Grid</h1>*/}
       
       <div className="w-full">
         {/* Matrix Container */}
-        <div className="w-full border-2 border-gray-300 bg-white rounded-lg shadow-lg p-6">
+        <div className="w-full border-2 bg-white shadow-[2px_2px_0_rgba(0,0,0,0.2)] p-4">
           {/* Y-axis heading and matrix rows */}
           <div className="flex">
             {/* Y-axis heading (vertical) */}
             <div className="flex items-center justify-center w-12 mr-4">
-              <div className="transform -rotate-90 whitespace-nowrap font-bold text-lg text-gray-800">
+              <div className="transform -rotate-90 whitespace-nowrap font-bold text-lg text-gray-600">
                 {yAxisHeading}
               </div>
             </div>
@@ -35,7 +35,7 @@ const MatrixGrid = () => {
               {sampleContent.map((row, rowIndex) => (
                 <div key={rowIndex} className="flex items-center mb-2">
                   {/* Y-axis label */}
-                  <div className="w-32 text-left pr-6 font-semibold text-md text-gray-700">
+                  <div className="w-32 text-left pr-6 font-semibold text-md text-gray-600">
                     {yAxisLabels[rowIndex]}
                   </div>
                   
@@ -50,7 +50,7 @@ const MatrixGrid = () => {
                                 textColor = 'text-white';
                                 break;
                             case 12:
-                                bgColor = 'bg-red-500';
+                                bgColor = 'bg-red-600';
                                 textColor = 'text-white';
                                 break;
                             case 9:
@@ -86,12 +86,20 @@ const MatrixGrid = () => {
                         return (
                       <div
                         key={`${rowIndex}-${colIndex}`}
-                        className={`flex-1 min-h-[4rem] border border-gray flex items-center justify-center ${bgColor} hover:bg-blue-100 transition-colors cursor-pointer mr-1 last:mr-0 py-4`}
+                        className={`flex-1 min-h-[6rem] border border-gray ${bgColor} hover:bg-blue-100 transition-colors cursor-pointer mr-1 last:mr-0 py-4 relative group`}
                       >
-                        {/* This is where you can put any HTML element */}
-                        <div className="text-center px-2">
-                          <div className={`font-medium text-md ${textColor} `}>{bucketRiskScore}</div>
-                          {cell.map((activity) => (<div className={`text-sm ${textColor} `}>{activity}</div>))}
+                        {/* Risk score in top right corner */}
+                        <div className="absolute top-1 right-2 font-medium text-xs text-black bg-white bg-opacity-90 px-1 py-0.5 rounded">
+                          {bucketRiskScore}
+                        </div>
+                        
+                        {/* Activity content centered */}
+                        <div className="flex items-center justify-center h-full px-2">
+                          <div className="text-center">
+                            {cell.map((activity, index) => (
+                              <div key={index} className={`text-sm ${textColor} group-hover:text-black`}>{activity}</div>
+                            ))}
+                          </div>
                         </div>
                       </div>
                     )})}
@@ -102,7 +110,7 @@ const MatrixGrid = () => {
               {/* X-axis labels at bottom */}
               <div className="flex ml-32 mt-4">
                 {xAxisLabels.map((label, index) => (
-                  <div key={index} className="flex-1 text-center font-semibold text-md text-gray-700 mr-1 last:mr-0">
+                  <div key={index} className="flex-1 text-center font-semibold text-md text-gray-600 mr-1 last:mr-0">
                     {label}
                   </div>
                 ))}
@@ -110,7 +118,7 @@ const MatrixGrid = () => {
               
               {/* X-axis heading at bottom */}
               <div className="flex justify-center ml-32 mt-4">
-                <div className="font-bold text-lg text-gray-800">
+                <div className="font-bold text-lg text-gray-600">
                   {xAxisHeading}
                 </div>
               </div>
@@ -118,9 +126,9 @@ const MatrixGrid = () => {
           </div>
         
                     {/* Adding Legends to the Matrix */}
-            <div className="flex items-center space-x-4 text-sm mt-16">
+            <div className="flex items-center space-x-4 text-sm mt-16 mb-8 mx-4">
               <div className="flex items-center space-x-2">
-                <div className="w-4 h-4 bg-red-500"></div>
+                <div className="w-4 h-4 bg-red-600"></div>
                 <span>Very High</span>
               </div>
               <div className="flex items-center space-x-2">
@@ -128,11 +136,11 @@ const MatrixGrid = () => {
                 <span>High</span>
               </div>
               <div className="flex items-center space-x-2">
-                <div className="w-4 h-4 bg-green-300"></div>
+                <div className="w-4 h-4 bg-green-400"></div>
                 <span>Moderate</span>
               </div>
               <div className="flex items-center space-x-2">
-                <div className="w-4 h-4 bg-green-600"></div>
+                <div className="w-4 h-4 bg-green-800"></div>
                 <span>Low</span>
               </div>
             </div>
