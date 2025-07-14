@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp, Info, RefreshCw, Plus } from 'lucide-react';
-import MatrixGrid from './reactMatrix3';
+import MatrixGrid from './reactMatrix';
 import MitigationSummaryPage from './trial_mitigationSummary';
 import logo from '../images/Zaidyn_logo_riskAssesment.png'
 
