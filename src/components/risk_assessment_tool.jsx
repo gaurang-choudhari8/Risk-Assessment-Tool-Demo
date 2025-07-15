@@ -861,7 +861,7 @@ const RiskAssessmentTool = () => {
           <div className="flex items-center space-x-4">
             <div className="bg-orange-500 text-white text-l font-bold px-16 py-3">RISK INSIGHTS ENGINE</div>
           </div>
-            <img src={logo} alt="Company Logo" className="h-10 w-auto" />
+            {/*<img src={logo} alt="Company Logo" className="h-10 w-auto" />*/}
           <div className="bg-orange-500 text-white text-l font-bold px-16 py-3">RISK ASSESSMENT TOOL</div>
         </div>
       </div>
